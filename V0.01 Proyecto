@@ -1,0 +1,194 @@
+//Gabriel_Gonzalez_S2, Gabriela_Herrera_S1, Alejandro_Lobos_S2
+#include <stdio.h>
+#define FIL 10 
+#define COL 10
+//los define 10 son el maximo valor de la filas y las columnas de la matriz
+void PelisMenu();
+void horarios();
+void horas(int hora);
+void SumaTotalVoletos(int Val);
+void menu();
+
+void imprimirMatriz(int matriz[][COL]);
+void despejarSala(int matriz[][COL]);
+void llamarMatriz(int matriz[][COL]); //para hacer que se modifique la matriz escriban llamarMatriz(matriz) se hacen las preguntas y se modifican los valores internos, esto es para simular los asientos de las salas (para saber si los asientos estan ocupados)
+
+int main(){
+    int matriz[FIL][COL];
+    despejarSala(matriz);
+  int opcion;
+  int peli;
+  int hora;
+
+  while (1){
+    menu();
+    if (scanf("%d", &opcion) != 1) {
+        // Si no se pudo leer un número, limpiamos el bufer de entrada
+        while(getchar() != '\n');
+        printf("Error, por favor ingrese un numero\n ");
+        continue; // Saltamos al siguiente ciclo del bucle
+    }
+// verificamos que lo ingresado sea correcto
+    if (opcion < 1 || opcion > 4){
+      printf("Error, por favor ingrese un numero entre 1 y 4.\n");
+    }
+    else {
+      switch (opcion) {
+        case 1: 
+          printf("Has salido del programa\n"); 
+          return 0;
+        //opcion comprar entradas
+        case 2: 
+          printf("Opcion 2\n"); 
+          PelisMenu();
+          scanf("%d", &peli);
+          switch (peli){
+            case 1:
+                horarios(); 
+                printf("\n Seleccione un horario: ");
+                scanf("%d", &hora);
+                horas(hora);
+                break;
+            case 2: 
+                horarios(); 
+                printf("\n Seleccione un horario: ");
+                scanf("%d", &hora);
+                horas(hora);
+                break;
+            case 3: 
+                horarios(); 
+                printf("\n Seleccione un horario: ");
+                scanf("%d", &hora);
+                horas(hora);
+                break;
+            case 4: 
+                horarios(); 
+                printf("\n Seleccione un horario: ");
+                scanf("%d", &hora);
+                horas(hora);
+                break;
+            case 5: 
+              printf("Regresando al menu principal\n"); 
+              break;
+             case 6: 
+              printf("Has salido\n"); 
+              return 1;
+            default: 
+              printf("Ingrese un numero correcto\n");
+          }
+          break;
+
+        case 3: 
+          printf("Opcion Borrar pelicula\n"); 
+          break;
+        case 4: 
+          printf("Opcion Agregar pelicula\n"); 
+          break;
+        default: 
+          printf("Ingrese un número correcto\n");
+      }
+    }
+  }
+  return 0;
+}
+//Se crean void menus, para poder imprimir por pantalla las selecciones posibles para el usuario
+void menu(){
+  printf("\n |1| Salir\n |2| Compra de entradas\n |3| Borrar pelicula\n |4| Agregar pelicula\n seleccione que desea realizar: ");
+}
+void PelisMenu() {
+  printf("\nPeliculas disponibles.\n");
+  printf("1. Barbie: $4.400 \n");
+  printf("2. Oppenheimer: $4.400\n");
+  printf("3. Elementos: $4.400 \n");
+  printf("4. Megalodon: $4.400 \n");
+  printf("5. Volver al menu principal \n");
+  printf("6. Salir \n");
+  printf("\nIngrese Pelicula:");
+}
+
+void horarios() {
+  printf("Horarios peliculas:\n ");
+  printf("1 --> 10:00\n 2 --> 12:30\n 3 --> 15:00\n 4 --> 17:00\n 5 --> 19:30\n 6 --> 21:00\n 7. Volver al menu Principal");
+}
+
+void horas(int hora) {
+    int num_Personas = 0;
+  switch(hora){
+    case 1: printf("10:00");
+            printf("\nIngrese el numero de personas: ");
+            scanf("%d",&num_Personas);
+            SumaTotalVoletos(num_Personas);
+            break;
+    case 2: printf("12:30");
+            printf("\nIngrese el numero de personas: ");
+            scanf("%d",&num_Personas);
+            SumaTotalVoletos(num_Personas);
+            break;
+    case 3: printf("15:00");
+            printf("\nIngrese el numero de personas: ");
+            scanf("%d",&num_Personas);
+            SumaTotalVoletos(num_Personas);
+            break;
+    case 4: printf("17:00");
+            printf("\nIngrese el numero de personas: ");
+            scanf("%d",&num_Personas);
+            SumaTotalVoletos(num_Personas);
+            break;
+    case 5: printf("19:30");
+            printf("\nIngrese el numero de personas: ");
+            scanf("%d",&num_Personas);
+            SumaTotalVoletos(num_Personas);
+            break;
+    case 6: printf("21:00");
+            printf("\nIngrese el numero de personas: ");
+            scanf("%d",&num_Personas);
+            SumaTotalVoletos(num_Personas);
+            break;
+    case 7: printf("Volviendo al menu");
+            break;
+    default: printf("Seleccione una opcion correcta");         break;
+  }
+}
+void SumaTotalVoletos(int Val){
+    int suma = 0;
+    int valor_entrada = 4400;
+    for (int i = 1; i <= Val; i++){
+        suma = suma + valor_entrada;
+        }
+    printf("El valor total de sus entradas sera de: %d\n ¿Paga con efectivo, debito, o credito?", suma);
+  
+}
+void imprimirMatriz(int matriz[][COL]) {
+    for (int i = 0; i < FIL; i++) {
+        for (int j = 0; j < COL; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n"); //esta funcion hace que se muestre la matriz de manera ordenada
+    }
+    printf("\n");
+}
+
+void despejarSala(int matriz[][COL]) {
+    for (int i = 0; i < FIL; i++) {
+        for (int j = 0; j < COL; j++) {
+            matriz[i][j] = 0;
+        } //esta funcion limpia la matriz y le coloco un 0 en todos los valores
+    }
+}
+void llamarMatriz(int matriz[][COL]) {
+    int fila, columna;
+    imprimirMatriz(matriz);
+    printf("\n");
+    printf("Elija la fila (1-%d): ", FIL); //aqui se inician las preguntras para modificar la matriz
+    scanf("%d", &fila);
+    printf("Elija la columna (1-%d): ", COL);
+    scanf("%d", &columna);
+    if (fila >= 1 && fila <= FIL && columna >= 1 && columna <= COL) {//esta parte se asegura la las coordenadas sean validas
+        int fila_r = fila - 1;
+        int columna_r = columna - 1;
+        matriz[fila_r][columna_r] = 1; //aqui se asigna un 1 a la matriz indicada
+        imprimirMatriz(matriz); //se imprime la matriz modifica
+    } else {
+        printf("Coordenadas no validas.\n");
+    }
+}
